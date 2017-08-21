@@ -13,13 +13,11 @@ import java.util.Stack;
  */
 public class Game {
 
-    protected JDice dice;
     protected Die[] dies;
     protected int rolls = 0;//how many times score recorded,  max is 13 according to rules
 
-    public Game(JDice dice) {
-        this.dice = dice;
-        this.dies = dice.dice;
+    public Game(Die[] dice) {
+        this.dies = dice;
     }
 
     protected Die[] getDies(){
@@ -27,7 +25,6 @@ public class Game {
     }
 
     public boolean isOver() {
-        System.out.println("Rolls " + rolls);
         return rolls >= 13;
     }
 

@@ -29,8 +29,7 @@ public class Die extends JToggleButton implements ItemListener, Comparable {
     private final ImageIcon defaultImage = new javax.swing.ImageIcon(getClass().getResource("/icons/misc/load.png"));
 
     public Die() {
-        setIcon(defaultImage);
-        //setPreferredSize(new Dimension(70, 70));
+        setDefaultIcon();
         setPreferredSize(new Dimension(55, 55));
         addItemListener(this);
     }
@@ -46,7 +45,6 @@ public class Die extends JToggleButton implements ItemListener, Comparable {
         num = rand.nextInt(max - min + 1) + min;
         setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/unselected/" + num + ".png")));
         return num;
-
     }
 
     public int getValue(){
