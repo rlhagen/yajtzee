@@ -17,11 +17,12 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
- *Graphical JPanel that holds 5 die
+ * Graphical JPanel that holds 5 die
+ *
  * @author babka-lipka
  */
 @SuppressWarnings("serial")
-public class JDice extends JPanel implements ActionListener{
+public class JDice extends JPanel implements ActionListener {
 
     private final JPanel dicePanel, rollPanel;
     protected Die[] dice = new Die[5];
@@ -29,7 +30,7 @@ public class JDice extends JPanel implements ActionListener{
     protected int rollnum = 0;
 
     public JDice() {
-        
+
         this.setLayout(new BorderLayout());
 
         FlowLayout layout = new FlowLayout();
@@ -74,23 +75,19 @@ public class JDice extends JPanel implements ActionListener{
 
     /**
      * ActionListener, rolls all the dice that isn't selected...
+     *
      * @param e
      */
     public void actionPerformed(ActionEvent e) {
         rollDice();
     }
 
-    public void rollDice(){
+    public void rollDice() {
         if (rollnum < 3) {
             rollnum++;
             for (Die d : dice) {
                 if (!d.isSelected()) {
-                    try {
-                        d.roll();
-                    } catch (Exception ex) {
-                        Logger.getLogger(JDice.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
+                    d.roll();
                 }
             }
         }

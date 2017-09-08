@@ -19,7 +19,7 @@ public class Die extends JToggleButton implements ItemListener, Comparable {
 
     private final int min = 1;
     private final int max = 6;
-    private int num = 0;
+    private int num = 1;
     private final Random rand = new Random(System.currentTimeMillis());
     private final ImageIcon defaultImage = new javax.swing.ImageIcon(getClass().getResource("/icons/misc/load.png"));
 
@@ -34,12 +34,8 @@ public class Die extends JToggleButton implements ItemListener, Comparable {
     }
 
 
-    public int roll() throws Exception {
-        Animation updater = new Animation();
-        updater.execute();
-        num = rand.nextInt(max - min + 1) + min;
-        setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/unselected/" + num + ".png")));
-        return num;
+    public void roll() {
+        new Animation().execute();
     }
 
     public int getValue() {
@@ -60,15 +56,15 @@ public class Die extends JToggleButton implements ItemListener, Comparable {
     }
 
     public int compareTo(Object o) {
-        Die d = (Die) o;
-        return this.getValue() - d.getValue();
+        return this.getValue() - ((Die) o).getValue();
     }
 
-    class Animation extends SwingWorker<Void, Void> {
+    private class Animation extends SwingWorker<Void, Void> {
 
         @Override
         protected Void doInBackground() {
-            for (int i = 0; i < 15; i++) {
+            int bounces = rand.nextInt(15) + 1;
+            for (int i = 0; i < bounces; i++) {
                 num = rand.nextInt(max - min + 1) + min;
                 setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/unselected/" + num + ".png")));
                 try {
