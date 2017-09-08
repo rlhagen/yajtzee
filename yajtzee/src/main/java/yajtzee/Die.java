@@ -15,11 +15,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JToggleButton;
 import javax.swing.SwingWorker;
 
-/**
- *
- * @author babka-lipka
- */
-@SuppressWarnings({ "rawtypes", "serial" })
 public class Die extends JToggleButton implements ItemListener, Comparable {
 
     private final int min = 1;
@@ -34,7 +29,7 @@ public class Die extends JToggleButton implements ItemListener, Comparable {
         addItemListener(this);
     }
 
-    public void setDefaultIcon(){
+    public void setDefaultIcon() {
         setIcon(defaultImage);
     }
 
@@ -47,8 +42,12 @@ public class Die extends JToggleButton implements ItemListener, Comparable {
         return num;
     }
 
-    public int getValue(){
+    public int getValue() {
         return num;
+    }
+
+    public void setValue(int value) {
+        this.num = value;
     }
 
     public void itemStateChanged(ItemEvent e) {
@@ -65,15 +64,13 @@ public class Die extends JToggleButton implements ItemListener, Comparable {
         return this.getValue() - d.getValue();
     }
 
-
-
     class Animation extends SwingWorker<Void, Void> {
 
         @Override
-        protected Void doInBackground(){
-            for(int i = 0; i < 15; i++){
-            num = rand.nextInt(max - min + 1) + min;
-            setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/unselected/" + num + ".png")));
+        protected Void doInBackground() {
+            for (int i = 0; i < 15; i++) {
+                num = rand.nextInt(max - min + 1) + min;
+                setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/unselected/" + num + ".png")));
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException ex) {

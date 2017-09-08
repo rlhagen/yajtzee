@@ -7,10 +7,7 @@ package yajtzee;
 import java.util.Arrays;
 import java.util.Stack;
 
-/**
- *
- * @author babka-lipka
- */
+
 public class Game {
 
     protected Die[] dies;
@@ -20,7 +17,7 @@ public class Game {
         this.dies = dice;
     }
 
-    protected Die[] getDies(){
+    protected Die[] getDies() {
         return dies;
     }
 
@@ -51,27 +48,15 @@ public class Game {
     }
 
     public boolean isThreeOfKind() {
-        int[] number = {0, 0, 0, 0, 0, 0};
-        for (int i = 0; i < dies.length; i++) {
-            if (++number[dies[i].getValue() - 1] >= 3) {
-                return true;
-            }
-        }
-        return false;
+        return atLeastEqual(3);
     }
 
     public boolean isFourOfKind() {
-        int[] number = {0, 0, 0, 0, 0, 0};
-        for (int i = 0; i < dies.length; i++) {
-            if (++number[dies[i].getValue() - 1] >= 4) {
-                return true;
-            }
-        }
-        return false;
+        return atLeastEqual(4);
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-	public boolean isFullHouse() {
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    public boolean isFullHouse() {
         if (isThreeOfKind()) {
             Stack[] stack = {new Stack(), new Stack(), new Stack(), new Stack(), new Stack(), new Stack()};
             for (int i = 0; i < dies.length; i++) {
@@ -119,14 +104,17 @@ public class Game {
             temp = value;
         }
 
-
         return count >= 5;
     }
 
     public boolean isYajtzee() {
+        return atLeastEqual(5);
+    }
+
+    private boolean atLeastEqual(int min) {
         int[] number = {0, 0, 0, 0, 0, 0};
         for (int i = 0; i < dies.length; i++) {
-            if (++number[dies[i].getValue() - 1] >= 5) {
+            if (++number[dies[i].getValue() - 1] >= min) {
                 return true;
             }
         }
