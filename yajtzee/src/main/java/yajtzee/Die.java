@@ -29,6 +29,13 @@ public class Die extends JToggleButton implements ItemListener, Comparable {
         addItemListener(this);
     }
 
+    public Die(int value){
+        this.setValue(value);
+        setDefaultIcon();
+        setPreferredSize(new Dimension(55, 55));
+        addItemListener(this);
+    }
+
     public void setDefaultIcon() {
         setIcon(defaultImage);
     }
