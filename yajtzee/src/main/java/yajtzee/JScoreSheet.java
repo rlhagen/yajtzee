@@ -32,16 +32,18 @@ public class JScoreSheet extends JPanel {
 //    protected JHighScore highscore;
     private TableModel tablemodel;
     private JTable jtable;
+    private JDice dice;
     private final Game game;
     private int currentgame;
     private String player = "Player";
     private int games = 1;
 
-    public JScoreSheet(final Game game) {
+    public JScoreSheet(final Game game, JDice dice) {
 //        highscore = new JHighScore();
         GridLayout layout = new GridLayout(0, 1);
         this.setLayout(layout);
         this.game = game;
+        this.dice = dice;
         init();//initalizes the GUI and data
         showPlayerDialog();//enters the players name
     }
@@ -151,10 +153,6 @@ public class JScoreSheet extends JPanel {
         }
     }
 
-    /**
-     * needs refactoring
-     * @param e
-     */
     private class MouseClick extends MouseAdapter {
 
         @Override
@@ -240,7 +238,7 @@ public class JScoreSheet extends JPanel {
                 }
                 jtable.setValueAt(Integer.parseInt(jtable.getValueAt(6, currentgame).toString()) + Integer.parseInt(jtable.getValueAt(15, currentgame).toString()), 16, currentgame);//total score
                 if (row != 14) {//does not increment if a bonus Yahtzee
-                    game.dice.resetDice();
+                    dice.resetDice();
                     game.rolls++;
                 }
                 if (game.isOver()) {//checks to see if game is over, if it is, sets to next game

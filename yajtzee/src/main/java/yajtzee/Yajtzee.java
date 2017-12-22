@@ -21,27 +21,20 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class Yajtzee extends JPanel implements ActionListener{
 
-    private final JPanel panel;
-    private final JMenuBar jmenu;
-    private final JMenu jaboutMenu;
-    private final JMenuItem jaboutitem;
-    private final JDice dice;
-    private final Game game;
-    private final JScoreSheet sheet;
+    private JScoreSheet sheet;
 
     public Yajtzee(){
-        dice = new JDice();
-        game = new Game(dice);
-        BorderLayout layout = new BorderLayout();
-        this.setLayout(layout);
+        JDice dice = new JDice();
+        Game game = new Game(dice.dice);
+        this.setLayout(new BorderLayout());
 
-        panel = new JPanel(new BorderLayout());
+        JPanel panel = new JPanel(new BorderLayout());
         this.add(panel, BorderLayout.NORTH);
 
-        jmenu = new JMenuBar();
-        jaboutMenu = new JMenu("About");
+        JMenuBar jmenu = new JMenuBar();
+        JMenu jaboutMenu = new JMenu("About");
         jmenu.add(jaboutMenu);
-        jaboutitem = new JMenuItem("High Scores");
+        JMenuItem jaboutitem = new JMenuItem("High Scores");
         jaboutMenu.add(jaboutitem);
         jaboutitem.addActionListener(this);
         panel.add(jmenu, BorderLayout.NORTH);
@@ -54,7 +47,7 @@ public class Yajtzee extends JPanel implements ActionListener{
 //        logo.setBorder(BorderFactory.createEtchedBorder());
 //        panel.add(logo, BorderLayout.SOUTH);
 
-        sheet = new JScoreSheet(game);
+        sheet = new JScoreSheet(game, dice);
         this.add(sheet, BorderLayout.SOUTH);
 
         this.add(dice, BorderLayout.CENTER);

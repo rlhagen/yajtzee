@@ -7,27 +7,21 @@ package yajtzee;
 import java.util.Arrays;
 import java.util.Stack;
 
-/**
- *
- * @author babka-lipka
- */
+
 public class Game {
 
-    protected JDice dice;
     protected Die[] dies;
     protected int rolls = 0;//how many times score recorded,  max is 13 according to rules
 
-    public Game(JDice dice) {
-        this.dice = dice;
-        this.dies = dice.dice;
+    public Game(Die[] dice) {
+        this.dies = dice;
     }
 
-    protected Die[] getDies(){
+    protected Die[] getDies() {
         return dies;
     }
 
     public boolean isOver() {
-        System.out.println("Rolls " + rolls);
         return rolls >= 13;
     }
 
@@ -54,27 +48,15 @@ public class Game {
     }
 
     public boolean isThreeOfKind() {
-        int[] number = {0, 0, 0, 0, 0, 0};
-        for (int i = 0; i < dies.length; i++) {
-            if (++number[dies[i].getValue() - 1] >= 3) {
-                return true;
-            }
-        }
-        return false;
+        return atLeastEqual(3);
     }
 
     public boolean isFourOfKind() {
-        int[] number = {0, 0, 0, 0, 0, 0};
-        for (int i = 0; i < dies.length; i++) {
-            if (++number[dies[i].getValue() - 1] >= 4) {
-                return true;
-            }
-        }
-        return false;
+        return atLeastEqual(4);
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-	public boolean isFullHouse() {
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    public boolean isFullHouse() {
         if (isThreeOfKind()) {
             Stack[] stack = {new Stack(), new Stack(), new Stack(), new Stack(), new Stack(), new Stack()};
             for (int i = 0; i < dies.length; i++) {
@@ -122,14 +104,17 @@ public class Game {
             temp = value;
         }
 
-
         return count >= 5;
     }
 
     public boolean isYajtzee() {
+        return atLeastEqual(5);
+    }
+
+    private boolean atLeastEqual(int min) {
         int[] number = {0, 0, 0, 0, 0, 0};
         for (int i = 0; i < dies.length; i++) {
-            if (++number[dies[i].getValue() - 1] >= 5) {
+            if (++number[dies[i].getValue() - 1] >= min) {
                 return true;
             }
         }

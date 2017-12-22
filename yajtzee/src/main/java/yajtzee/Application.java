@@ -16,17 +16,16 @@ import javax.swing.UnsupportedLookAndFeelException;
 import org.pushingpixels.substance.api.skin.SubstanceGraphiteLookAndFeel;
 
 /**
- *
  * @author babka-lipka
  */
 @SuppressWarnings("serial")
-public class MainUI extends JFrame {
+public class Application extends JFrame {
 
-    public MainUI() {
+    public Application() {
         try {
             UIManager.setLookAndFeel(new SubstanceGraphiteLookAndFeel());
         } catch (UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(MainUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//exit
         this.setTitle("Yajtzee");
@@ -46,7 +45,7 @@ public class MainUI extends JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {//creates own thread for UI
 
             public void run() {//implemented from Runnable interface
-                new MainUI().setVisible(true);
+                new Application().setVisible(true);
             }
         });
 
