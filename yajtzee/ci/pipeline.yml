@@ -1,0 +1,14 @@
+resources:
+- name: yajtzee
+  type: git
+  source: {uri: "https://github.com/rlhagen/yajtzee.git"}
+
+jobs:
+  - name: maven-package
+    plan:
+    - aggregate:
+      - get: yajtzee
+        trigger: true
+    - task: maven-package
+      privileged: true
+      file: yajtzee/ci/maven-package.yml
