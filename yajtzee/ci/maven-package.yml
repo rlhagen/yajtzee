@@ -15,4 +15,4 @@ inputs:
 
 run:
   path: mvn
-  args: ["-f", "yajtzee/pom.xml", "-DskipTests=true", "package"]
+  args: ["-DskipTests=true", "package"]
