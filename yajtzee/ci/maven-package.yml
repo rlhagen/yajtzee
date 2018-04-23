@@ -1,10 +1,11 @@
+---
 platform: linux
 
 image_resource:
   type: docker-image
   source:
-    repository: nitram509/alpine-oraclejdk8-maven-cmake-gcc
-    tag: latest
+    repository: openjdk
+    tag: '8-jdk-alpine'
 
 inputs:
   - name: yajtzee
