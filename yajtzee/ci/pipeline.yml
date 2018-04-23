@@ -10,5 +10,5 @@ jobs:
       - get: yajtzee
         trigger: true
     - task: maven-package
-      privileged: true
+      privileged: false
       file: yajtzee/yajtzee/ci/maven-package.yml
